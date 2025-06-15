@@ -982,7 +982,7 @@ static int rpmsg_probe(struct virtio_device *vdev)
 	 * this might be concurrent with callbacks, but we are only
 	 * doing notify, not a full kick here, so that's ok.
 	 */
-	if (notify)
+	if (true)
 		virtqueue_notify(vrp->rvq);
 
 	dev_info(&vdev->dev, "rpmsg host is online\n");

@@ -767,6 +767,16 @@
 			size = <0x0 CVIMMAP_FRAMEBUFFER_SIZE>;
 			no-map;
 		};
+
+		virtqueue0desc@8fc00000 {
+			no-map;
+			reg = <0x0 0x8fc00000 0x0 0x10000>;
+		};
+
+		virtqueue0buf@8fd00000 {
+			no-map;
+			reg = <0x0 0x8fd00000 0x0 0x100000>;
+		};
 	};
 
 	cvifb {
@@ -789,6 +799,13 @@
 		clock-freq-vip-sys1 = <300000000>;
 	};
 
+	rpmsg {
+		compatible = "cvitek,rpmsg";
+		vdev-nums = <1>;
+		reg = <0x0 0x8fc00000 0x0 0x10000>, <0x0 0x8fd00000 0x0 0x100000>;
+		reg-names = "desc_region", "buffer_region";
+		status = "okay";
+	};
 
 	rproc {
 		compatible = "cvi,sg2002-rproc";
