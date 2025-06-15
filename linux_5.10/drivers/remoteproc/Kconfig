@@ -12,7 +12,7 @@ config REMOTEPROC
 	  Support for remote processors (such as DSP coprocessors). These
 	  are mainly used on embedded systems.
 
-if REMOTEPROC
+
 
 config REMOTEPROC_CDEV
 	bool "Remoteproc character device interface"
@@ -244,6 +244,13 @@ config ST_REMOTEPROC
 	  processor framework.
 	  This can be either built-in or a loadable module.
 
+config CVI_REMOTEPROC
+	tristate "CVI remoteproc support"
+	help
+	  Say y here to support ST's adjunct processors via the remote
+	  processor framework.
+	  This can be either built-in or a loadable module.
+
 config ST_SLIM_REMOTEPROC
 	tristate
 
@@ -288,6 +295,6 @@ config TI_K3_R5_REMOTEPROC
 	  It's safe to say N here if you're not interested in utilizing
 	  a slave processor.
 
-endif # REMOTEPROC
+
 
 endmenu

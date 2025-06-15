@@ -1492,10 +1492,10 @@ static int rproc_fw_boot(struct rproc *rproc, const struct firmware *fw)
 
 	rproc->bootaddr = rproc_get_boot_addr(rproc, fw);
 
-	/* Load resource table, core dump segment list etc from the firmware */
-	ret = rproc_parse_fw(rproc, fw);
-	if (ret)
-		goto unprepare_rproc;
+	// /* Load resource table, core dump segment list etc from the firmware */
+	// ret = rproc_parse_fw(rproc, fw);
+	// if (ret)
+	// 	goto unprepare_rproc;
 
 	/* reset max_notifyid */
 	rproc->max_notifyid = -1;
