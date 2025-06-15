@@ -258,6 +258,9 @@ start() {
     if [ -f $ADBD_PATH/adbd ]; then
 	$ADBD_PATH/adbd &
     fi
+    UDC=`ls /sys/class/udc/ | awk '{print $1}'`
+    echo ${UDC} >$CVI_GADGET/UDC
+    echo ${UDC} >$CVI_GADGET/UDC
   else
     # Start the gadget driver
     UDC=`ls /sys/class/udc/ | awk '{print $1}'`
