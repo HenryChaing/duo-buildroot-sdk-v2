@@ -244,6 +244,13 @@ config ST_REMOTEPROC
 	  processor framework.
 	  This can be either built-in or a loadable module.
 
+config CVI_REMOTEPROC
+	tristate "CVI remoteproc support"
+	help
+	  Say y here to support ST's adjunct processors via the remote
+	  processor framework.
+	  This can be either built-in or a loadable module.
+
 config ST_SLIM_REMOTEPROC
 	tristate
 

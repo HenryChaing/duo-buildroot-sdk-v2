@@ -33,7 +33,7 @@
 	rst: reset-controller {
 		#reset-cells = <1>;
 		compatible = "cvitek,reset";
-		reg = <0x0 0x03003000 0x0 0x10>;
+		reg = <0x0 0x03003000 0x0 0x24>;
 	};
 
 	restart: restart-controller {
@@ -787,6 +787,13 @@
 			"clk_sys_2", "clk_sys_3",
 			"clk_sys_4", "clk_dwa";
 		clock-freq-vip-sys1 = <300000000>;
+	};
+
+	rproc {
+		compatible = "cvi,sg2002-rproc";
+		reg = <0x0 CVIMMAP_FREERTOS_ADDR 0x0 CVIMMAP_FREERTOS_SIZE>;
+		resets = <&rst 294>;
+		reset-names = "c906l";
 	};
 
 	rgn {
