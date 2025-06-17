@@ -762,6 +762,11 @@
 	  #address-cells = <0x2>;
 	  ranges;
 
+		virtqueue0desc@8fc00000 {
+			no-map;
+			reg = <0x0 0x8fc00000 0x0 0x10000>;
+		};
+
 		fb_reserved: cvifb {
 			alloc-ranges = <0x0 CVIMMAP_FRAMEBUFFER_ADDR 0 CVIMMAP_FRAMEBUFFER_SIZE>;
 			size = <0x0 CVIMMAP_FRAMEBUFFER_SIZE>;
@@ -787,6 +792,14 @@
 			"clk_sys_2", "clk_sys_3",
 			"clk_sys_4", "clk_dwa";
 		clock-freq-vip-sys1 = <300000000>;
+	};
+
+	rpmsg {
+		compatible = "cvitek,rpmsg";
+		vdev-nums = <1>;
+		reg = <0x0 0x8fc00000 0x0 0x10000>;
+		reg-names = "desc_region";
+		status = "okay";
 	};
 
 	rproc {

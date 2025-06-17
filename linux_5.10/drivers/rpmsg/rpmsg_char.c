@@ -20,6 +20,7 @@
 #include <linux/skbuff.h>
 #include <linux/slab.h>
 #include <linux/uaccess.h>
+#include <linux/mod_devicetable.h>
 #include <uapi/linux/rpmsg.h>
 
 #include "rpmsg_internal.h"
@@ -240,9 +241,13 @@ static ssize_t rpmsg_eptdev_write_iter(struct kiocb *iocb,
 
 	if (filp->f_flags & O_NONBLOCK)
 		ret = rpmsg_trysend(eptdev->ept, kbuf, len);
+#ifndef CONFIG_ARCH_CVITEK
 	else
 		ret = rpmsg_send(eptdev->ept, kbuf, len);
-
+#else
+	else 
+		ret = rpmsg_sendto(eptdev->ept, kbuf, len, eptdev->chinfo.dst);	
+#endif
 unlock_eptdev:
 	mutex_unlock(&eptdev->ept_lock);
 
@@ -534,10 +539,19 @@ static void rpmsg_chrdev_remove(struct rpmsg_device *rpdev)
 	device_del(&ctrldev->dev);
 	put_device(&ctrldev->dev);
 }
+#ifdef CONFIG_ARCH_CVITEK
+struct rpmsg_device_id rpmsg_device_id_inst[] = {
+	{ .name	= "rpmsg-sg2002-c906l-channel" },
+	{ },
+};
+#endif
 
 static struct rpmsg_driver rpmsg_chrdev_driver = {
 	.probe = rpmsg_chrdev_probe,
 	.remove = rpmsg_chrdev_remove,
+#ifdef CONFIG_ARCH_CVITEK
+	.id_table = rpmsg_device_id_inst,
+#endif
 	.drv = {
 		.name = "rpmsg_chrdev",
 	},

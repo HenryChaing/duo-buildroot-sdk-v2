@@ -15,6 +15,14 @@ config RPMSG_CHAR
 	  in /dev. They make it possible for user-space programs to send and
 	  receive rpmsg packets.
 
+config RPMSG_CVI_SMEM
+	tristate "Cvitek Shared Memory Driver"
+	depends on RPMSG
+	help
+	  Say y here to enable support for the Cvitek Shared Memory Driver
+	  providing communication channels to remote processors in Cvitek
+	  platforms.
+
 config RPMSG_MTK_SCP
 	tristate "MediaTek SCP"
 	depends on MTK_SCP
