@@ -1,9 +1,10 @@
 #!/bin/sh
 
 /etc/uhubon.sh device >> /tmp/rndis.log 2>&1
-/etc/run_usb.sh probe rndis >> /tmp/rndis.log 2>&1
-/etc/run_usb.sh start rndis >> /tmp/rndis.log 2>&1
-
+/etc/run_usb.sh probe adb >> /tmp/rndis.log 2>&1
+/etc/run_usb.sh start adb >> /tmp/rndis.log 2>&1
+/etc/run_usb.sh probe adb >> /tmp/rndis.log 2>&1
+/etc/run_usb.sh start adb >> /tmp/rndis.log 2>&1
 
 sleep 0.5
 ifconfig usb0 192.168.42.1
