@@ -1,4 +1,4 @@
 [submodule "threadx"]
 	path = threadx
-	branch = amp
 	url = https://github.com/HenryChaing/ThreadX-to-RISC-V64.git
+	branch = amp
